@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechBite</title>
+<meta name="description" content="TechBite makes 60-second animated explainers about the technology people use every day, and publishes them to YouTube and TikTok.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero { padding-block: 72px 8px; }
+  .hero h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); max-width: 16ch; }
+  .hero .lede { margin-top: 26px; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 56px;
+  }
+  .facts div { background: var(--bg); padding: 22px 20px 24px; }
+  .facts dt { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .facts dd { margin: 8px 0 0; font-family: "Archivo Black", Arial, sans-serif; font-size: 1.5rem; letter-spacing: -0.02em; }
+  .facts dd span { font-size: 0.95rem; font-family: "Archivo", Arial, sans-serif; font-weight: 500; color: var(--text-dim); display: block; margin-top: 4px; letter-spacing: 0; }
+  @media (max-width: 680px) { .facts { grid-template-columns: 1fr; } }
+
+  section.band { padding-block: 74px 0; }
+  section.band h2 { margin-bottom: 22px; }
+
+  .pipeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; max-width: var(--maxw); }
+  .pipeline li { display: grid; grid-template-columns: 3.2rem 1fr; gap: 18px; padding-block: 18px; border-top: 1px solid var(--rule); }
+  .pipeline li:last-child { border-bottom: 1px solid var(--rule); }
+  .pipeline .n { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; color: var(--text-dim); padding-top: 0.35rem; font-variant-numeric: tabular-nums; }
+  .pipeline h3 { margin-bottom: 5px; }
+  .pipeline p { color: var(--text-dim); }
+
+  .channels { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 2px solid var(--text); border-radius: 999px;
+    padding: 9px 18px 9px 14px; text-decoration: none;
+    font-weight: 600; font-size: 0.95rem;
+  }
+  .chip b { width: 9px; height: 9px; border-radius: 50%; }
+  .chip:hover { background: var(--text); color: var(--bg); }
+
+  .note { margin-top: 30px; padding: 20px 22px; border-left: 4px solid var(--purple); background: var(--surface); max-width: var(--maxw); }
+  .note p + p { margin-top: 0.8rem; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="index.html"><span class="glyph">TB</span> TechBite</a>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:techbite.dev@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Short-form tech explainers</p>
+    <h1>How the tech in your pocket <span class="hl">actually works.</span></h1>
+    <p class="lede">TechBite makes 60-second animated explainers — Bluetooth pairing, NFC payments, flash memory, Wi-Fi handoff — and publishes them to YouTube and TikTok. Motion graphics, English narration, burned-in captions, no talking head.</p>
+  </div>
+
+  <dl class="facts">
+    <div>
+      <dt>Format</dt>
+      <dd>1080 × 1920<span>Vertical, 60 fps</span></dd>
+    </div>
+    <div>
+      <dt>Length</dt>
+      <dd>30–60 sec<span>One idea per video</span></dd>
+    </div>
+    <div>
+      <dt>Language</dt>
+      <dd>English<span>Narrated and captioned</span></dd>
+    </div>
+  </dl>
+
+  <section class="band">
+    <p class="eyebrow">Where to watch</p>
+    <h2>Two channels, same videos</h2>
+    <div class="channels">
+      <a class="chip" href="https://www.youtube.com/@techbite" rel="noopener"><b style="background:var(--coral)"></b> YouTube</a>
+      <a class="chip" href="https://www.tiktok.com/@techbite" rel="noopener"><b style="background:var(--blue)"></b> TikTok</a>
+    </div>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">How a TechBite gets made</p>
+    <h2>Four steps, one operator</h2>
+    <ol class="pipeline">
+      <li>
+        <span class="n">01</span>
+        <div>
+          <h3>A topic goes in</h3>
+          <p>The operator sends a single subject — “how does NFC work” — to the TechBite production tool.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">02</span>
+        <div>
+          <h3>Script, voice, motion</h3>
+          <p>A script is drafted and narrated, word timings are extracted for the captions, and the animation is rendered frame by frame from TechBite’s own template set.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">03</span>
+        <div>
+          <h3>A person approves it</h3>
+          <p>Nothing publishes on its own. The finished video is reviewed, and the title, description, tags and publish time are set by hand before anything leaves the machine.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">04</span>
+        <div>
+          <h3>It publishes to both platforms</h3>
+          <p>Once approved, the video is uploaded to the TechBite YouTube channel and the TechBite TikTok account — immediately, or at a scheduled time.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="band">
+    <p class="eyebrow">About the publishing tool</p>
+    <h2>TechBite Publisher</h2>
+    <div class="prose" style="margin-top:20px">
+      <p>TechBite Publisher is the private, self-hosted tool that performs step 04. It runs on the operator’s own computer and posts only to the TechBite accounts on YouTube and TikTok. It is not a product, it is not offered to other creators, and it has no sign-up.</p>
+      <p>It connects to TikTok through the official Content Posting API using an access token the account owner granted, and to YouTube through the YouTube Data API. Each upload is initiated by a human approval — there is no unattended or bulk posting, and no content is posted to any account other than TechBite’s own.</p>
+    </div>
+    <div class="note">
+      <p><strong>Videos are made with AI assistance.</strong> Scripts, narration and animation are generated by software under human direction and reviewed before publishing. Uploads are declared as AI-generated content on platforms that offer that label.</p>
+      <p>Questions, corrections or takedown requests: <a href="mailto:techbite.dev@gmail.com">techbite.dev@gmail.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 TechBite</span>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <span class="spacer"><a href="mailto:techbite.dev@gmail.com">techbite.dev@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* TechBite — shared styles */
+
+:root {
+  --ink: #171425;
+  --ink-soft: #2C263E;
+  --cream: #F8F5EC;
+  --cream-deep: #EAE5D8;
+  --lime: #DFFF58;
+  --purple: #A797FF;
+  --coral: #FF8464;
+  --blue: #AADFE5;
+  --muted: #6F6889;
+
+  --bg: var(--cream);
+  --surface: #FFFDF7;
+  --text: var(--ink);
+  --text-dim: var(--muted);
+  --rule: #DED8C8;
+  --accent: var(--lime);
+
+  --maxw: 66ch;
+  --step-0: 1.0625rem;
+  --step-1: 1.35rem;
+  --step-2: 1.9rem;
+  --step-3: 2.9rem;
+  --step-4: 4.2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--ink);
+    --surface: var(--ink-soft);
+    --text: var(--cream);
+    --text-dim: #9C96B3;
+    --rule: #3A3352;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: var(--ink);
+  --surface: var(--ink-soft);
+  --text: var(--cream);
+  --text-dim: #9C96B3;
+  --rule: #3A3352;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.62;
+  font-synthesis-weight: none;
+}
+
+.wrap {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+@media (max-width: 520px) {
+  .wrap { padding-inline: 18px; }
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  background: var(--ink);
+  color: var(--cream);
+  border-bottom: 3px solid var(--ink);
+}
+
+.masthead .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding-block: 18px;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Archivo Black", "Archivo", Arial, sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin-right: auto;
+}
+
+.mark .glyph {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--lime);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1;
+  padding-top: 1px;
+}
+
+.masthead nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  font-size: 0.9rem;
+}
+
+.masthead nav a {
+  color: #C8C2DC;
+  text-decoration: none;
+  padding-block: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.masthead nav a:hover,
+.masthead nav a:focus-visible { color: var(--cream); border-bottom-color: var(--lime); }
+
+.masthead nav a[aria-current="page"] { color: var(--lime); border-bottom-color: var(--lime); }
+
+/* ---------- type ---------- */
+
+h1, h2, h3 {
+  font-family: "Archivo Black", "Archivo", Arial, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  text-wrap: balance;
+  margin: 0;
+}
+
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); line-height: 1.25; }
+
+p { margin: 0; }
+
+a { color: inherit; }
+
+.hl {
+  background: var(--lime);
+  color: var(--ink);
+  padding: 0.06em 0.24em;
+  border-radius: 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.lede { font-size: var(--step-1); line-height: 1.45; max-width: var(--maxw); }
+
+.prose { max-width: var(--maxw); display: flex; flex-direction: column; gap: 1.1rem; }
+.prose a { color: inherit; text-decoration-color: var(--purple); text-underline-offset: 3px; }
+
+/* ---------- footer ---------- */
+
+.foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 84px;
+}
+
+.foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  align-items: baseline;
+  padding-block: 28px 44px;
+  font-size: 0.87rem;
+  color: var(--text-dim);
+}
+
+.foot a { color: var(--text-dim); text-decoration-color: var(--rule); }
+.foot a:hover { color: var(--text); }
+.foot .spacer { margin-left: auto; }
+
+:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
