@@ -10,34 +10,21 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 <style>
-  .panel { padding-block: 72px 0; max-width: var(--maxw); }
+  .panel { padding-block: 76px 0; max-width: var(--maxw); }
   .panel h1 { font-size: clamp(2rem, 6vw, 2.8rem); }
   .panel > p { margin-top: 18px; }
-  .code {
-    margin-top: 26px;
-    border: 2px solid var(--text);
-    background: var(--surface);
-    padding: 18px 20px;
-  }
-  .code label { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); display: block; }
-  .code output {
-    display: block;
-    margin-top: 10px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.95rem;
-    word-break: break-all;
-    line-height: 1.5;
-  }
-  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; align-items: center; }
-  button {
-    font: inherit; font-weight: 600;
+  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; align-items: center; }
+  .btn {
+    font: inherit; font-weight: 600; text-decoration: none;
     background: var(--lime); color: var(--ink);
     border: 2px solid var(--ink);
     border-radius: 999px; padding: 9px 20px; cursor: pointer;
+    display: inline-block;
   }
-  button:hover { background: var(--ink); color: var(--lime); }
-  .status { font-size: 0.9rem; color: var(--text-dim); }
+  .btn:hover { background: var(--ink); color: var(--lime); }
   .err { border-left: 4px solid var(--coral); background: var(--surface); padding: 16px 20px; margin-top: 26px; }
+  details { margin-top: 26px; color: var(--text-dim); font-size: 0.92rem; }
+  details code { font-family: "IBM Plex Mono", ui-monospace, monospace; word-break: break-all; }
 </style>
 </head>
 <body>
@@ -56,22 +43,13 @@
 <main class="wrap">
   <div class="panel">
     <p class="eyebrow">TechBite Publisher</p>
-    <h1 id="head">Authorization received</h1>
-    <p id="intro">Copy the code below into TechBite Publisher to finish connecting the account. It is single-use and expires within a few minutes.</p>
-
-    <div class="code" id="box">
-      <label for="value">Authorization code</label>
-      <output id="value">—</output>
+    <h1 id="head">Finishing sign-in…</h1>
+    <p id="intro">Handing the authorization back to TechBite Publisher on this computer. This page does not store anything.</p>
+    <div class="row" id="row" hidden>
+      <a class="btn" id="manual" href="#">Continue</a>
     </div>
-
-    <div class="row">
-      <button type="button" id="copy">Copy code</button>
-      <span class="status" id="status"></span>
-    </div>
-
-    <div class="err" id="err" hidden>
-      <p id="errtext"></p>
-    </div>
+    <div class="err" id="err" hidden><p id="errtext"></p></div>
+    <details id="raw" hidden><summary>Authorization code</summary><p><code id="codeval"></code></p></details>
   </div>
 </main>
 
@@ -88,36 +66,29 @@
   var q = new URLSearchParams(location.search);
   var code = q.get('code');
   var error = q.get('error') || q.get('error_description');
-  var out = document.getElementById('value');
+  var target = 'http://127.0.0.1:5690'.replace('5690', '5678') + '/webhook/tiktok-callback' + location.search;
 
   if (error) {
     document.getElementById('head').textContent = 'Authorization failed';
     document.getElementById('intro').textContent = 'TikTok did not grant access. Nothing was connected.';
-    document.getElementById('box').hidden = true;
-    document.getElementById('copy').hidden = true;
     document.getElementById('err').hidden = false;
     document.getElementById('errtext').textContent = error;
     return;
   }
 
   if (!code) {
-    document.getElementById('head').textContent = 'Nothing to show';
+    document.getElementById('head').textContent = 'Nothing to finish';
     document.getElementById('intro').textContent = 'Open this page through the TikTok authorization flow — there is no code in the address.';
-    document.getElementById('box').hidden = true;
-    document.getElementById('copy').hidden = true;
     return;
   }
 
-  out.textContent = code;
+  var a = document.getElementById('manual');
+  a.href = target;
+  document.getElementById('row').hidden = false;
+  document.getElementById('codeval').textContent = code;
+  document.getElementById('raw').hidden = false;
 
-  document.getElementById('copy').addEventListener('click', function () {
-    var s = document.getElementById('status');
-    navigator.clipboard.writeText(code).then(function () {
-      s.textContent = 'Copied.';
-    }, function () {
-      s.textContent = 'Copy failed — select the code and copy it by hand.';
-    });
-  });
+  setTimeout(function () { location.replace(target); }, 900);
 })();
 </script>
 
